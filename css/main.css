@@ -1,0 +1,50 @@
+h3.heading{
+    border-bottom: solid 1px #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+div.sub-heading{
+    font-size: 20px;
+}
+
+p.skills{
+    margin-bottom: 35px;
+}
+
+.green{
+    color: #5cb85c;
+}
+
+div.jumbotron div{
+    line-height: 30px;
+}
+
+div.jumbotron div.thumbnail{
+    width: 150px;
+    margin-right: 20px;
+}
+
+body{
+    padding-top: 20px;
+    background: url('../img/light_wool.png');
+}
+
+div.footer{
+    margin-top: 40px;
+    border-top: solid 1px #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.label-language{
+    background-color: #5cb85c;
+}
+
+.label-framework{
+    background-color: #428bca;
+}
+
+.label-data-repo{
+    background-color: #f0ad4e;
+}
