@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="resumeApp" ng-controller="resumeCtrl">
     <head>
-        <title>Resume</title>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <title ng-bind="resume.name + ' - Resume'"></title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
         <link rel="stylesheet" href="css/main.css" />
-
-        <script>
-            function sendEmail(){
-                window.location.href = 'mailto:DJRiccardi@gmail.com';
-            }
-        </script>
     </head>
     <body>
         <div class="container">
@@ -19,128 +13,45 @@
                     <div class="thumbnail pull-left">
                         <img src="img/placeholder-headshot.jpg" alt="..." />
                     </div>
-                    <h1 class="green">Dominic Riccardi</h1>
-                    <button class="btn btn-success" onclick="sendEmail()">Contact me</button>
+                    <h1 class="green">{{ resume.name }}</h1>
+                    <button class="btn btn-success" ng-click="sendEmail()">Contact me</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-9">
-                <h3 class="heading">Professional Info</h3>
-                <p>Over seven years experience designing, developing, and maintaining web applications using both Microsoft and open-source, client-side technologies to solve internal and client-facing business problems.  Able to quickly learn and understand new concepts, technologies, and methodologies.  Responds positively to challenges, and provides innovative solutions to complex problems.</p>
+                    <h3 class="heading">Professional Info</h3>
+                    <p>{{ resume.professionalInfo }}</p>
 
-                <h3 class="heading">Work Experience</h3>
-                <div class="sub-heading green">Senior Software Engineer, Hiperos</div>
-                <p><em>Bridgeville, PA &#151; February 2011 - Present</em></p>
-                <p>Development, maintenance, and redesign of ASP.NET Web Forms third party management SaaS solution.  Team lead of "New UI" team, responsible for updating application architecture to ASP.NET MVC, as well as updating application UI.  Provide technical leadership to junior engineers.</p>
-                <p><strong>Accomplishments:</strong></p>
-                    <ul class="accomplishments">
-                    <li>Reduced execution time of business critical functionality by 90%</li>
-                    <li>Promoted to Senior Software Engineer, and given role of Team Lead on the "New UI" team</li>
-                    <li>Introduced Google's AngularJS framework to make front-end code less complicated and easily unit testable</li>
-                    <li>Designed process (using Google's AngularJS framework) that generates dynamic web forms, based on a user-configurable data dictionary</li>
-                </ul>
-                    <p class="skills">
-                        <span class="label label-language">C#</span>
-                        <span class="label label-language">JavaScript</span>
-                        <span class="label label-language">HTML</span>
-                        <span class="label label-language">CSS</span>
-                        <span class="label label-framework">AngularJS</span>
-                        <span class="label label-framework">jQuery</span>
-                        <span class="label label-framework">ASP.NET MVC</span>
-                        <span class="label label-framework">ASP.NET Web Forms</span>
-                        <span class="label label-data-repo">MS SQL Server</span>
-                        <span class="label label-data-repo">MongoDB</span>
-                    </p>
+                    <h3 class="heading">Work Experience</h3>
+                    <div class="job" ng-repeat="job in resume.workExperience">
+                        <div class="sub-heading green">{{ job.title }}, {{ job.company }}</div>
+                        <p><em>{{ job.location}} &#151; {{ job.start }} - {{ job.end }}</em></p>
+                        <p>{{ job.description }}</p>
+                        <p><strong>Accomplishments:</strong></p>
+                        <ul>
+                            <li ng-repeat="accomplishment in job.accomplishments">{{ accomplishment }}</li>
+                        </ul>
+                        <p>
+                            <span ng-repeat="skill in job.skillsUsed | orderBy:'skill.type'" class="label" ng-class="{ 'label-language': skill.type == SKILL_TYPE.language, 'label-framework': skill.type == SKILL_TYPE.frameworkSlashLibrary, 'label-data-repo': skill.type == SKILL_TYPE.dataRepository }">{{ skill.name }}</span>
+                        </p>
+                    </div>
 
-                <div class="sub-heading green">Technical Developer, Five Star Development</div>
-                <p><em>Pittsburgh, PA &#151; February 2009 - February 2011</em></p>
-                <p>Design, development, and maintenance of several custom ASP.NET Web Forms and ASP.NET MVC applications.  Primarily focused on Visa CAPS (Content Authoring and Publication) project: a custom content management system that allows operating regulations to be published to users worldwide.</p>
-                    <p><strong>Accomplishments:</strong></p>
-                    <ul class="accomplishments">
-                    <li>Developed a PDF generation process to replace a months-long process of manually printing and shipping operating regulation manuals to member banks worldwide</li>
-                    <li>Solved technical limitation of making out-of-the-box ASP.NET Web Service projects work correctly in Visa's secure hosting environment</li>
-                    <li>Designed and developed a custom CMS for American University's Emergency Preparedness Plan</li>
-                </ul>
-                    <p class="skills">
-                        <span class="label label-language">C#</span>
-                        <span class="label label-language">JavaScript</span>
-                        <span class="label label-language">HTML</span>
-                        <span class="label label-language">CSS</span>
-                        <span class="label label-language">XQuery</span>
-                        <span class="label label-language">XSL</span>
-                        <span class="label label-framework">jQuery</span>
-                        <span class="label label-framework">ASP.NET Web Forms</span>
-                        <span class="label label-framework">ASP.NET MVC</span>
-                        <span class="label label-framework">XSL:FO</span>
-                        <span class="label label-data-repo">MS SQL Server</span>
-                        <span class="label label-data-repo">MarkLogic</span>
-                    </p>
-
-                    <div class="sub-heading green">Application Developer, ALGOR</div>
-                <p><em>Blawnox, PA &#151; May 2007 - January 2009</em></p>
-                <p>Development and maintenance of several business critical internal-facing Windows Forms applications (e.g., customer relationship management and issue tracking systems).  Development and maintenance of shared business logic and data access components in C# using the Microsoft Enterprise Library for .NET Framework.</p>
-                    <p><strong>Accomplishments:</strong></p>
-                    <ul class="accomplishments">
-                    <li>Implemented Visual Studio 2008 Team Foundation Server for setting up development environment and source control for team projects</li>
-                </ul>
-                    <p class="skills">
-                        <span class="label label-language">C#</span>
-                        <span class="label label-language">XSL</span>
-                        <span class="label label-framework">ASP.NET Windows Forms</span>
-                        <span class="label label-framework">XSL:FO</span>
-                        <span class="label label-data-repo">MS SQL Server</span>
-                    </p>
-
-                    <div class="sub-heading green">Systems Analyst, University of Pittsburgh</div>
-                <p><em>Pittsburgh, PA &#151; November 2005 - May 2007</em></p>
-                    <p>Development and maintenance of online reporting and corporate intranet applications.  Implementation Recruitment Plus, which included writing and documenting communication flow rules, and mapping business processes.  Responsible for maintaining the integrity of undergraduate admissions and recruitment database.</p>
-                    <p><strong>Accomplishments:</strong></p>
-                    <ul class="accomplishments">
-                        <li>Finished bachelors degree part-time while working full-time</li>
-                        <li>Self-taught ASP.NET Web Forms and C#</li>
-                    </ul>
-                    <p class="skills">
-                        <span class="label label-language">C#</span>
-                        <span class="label label-language">HTML</span>
-                        <span class="label label-language">CSS</span>
-                        <span class="label label-framework">ASP.NET Web Forms</span>
-                        <span class="label label-data-repo">MS SQL Server</span>
-                    </p>
-
-                <h3 class="heading">Education</h3>
-                <div class="workplace">University of Pittsburgh</div>
-                <p><strong>Bachelor of Science, Computer Science</strong> &#151; <em>2002 - 2007</em></p>
-            </div>
+                    <h3 class="heading">Education</h3>
+                    <div ng-repeat="school in resume.education">
+                        <div class="sub-heading green">{{ school.name }}</div>
+                        <p><strong>{{ school.degree }}, {{ school.fieldOfStudy }}</strong> &#151; <em>{{ school.start }} - {{ school.end }}</em></p>
+                    </div>
+                </div>
                 <div class="col-lg-3">
                     <h3 class="heading green">Languages</h3>
-                    <p>JavaScript</p>
-                    <p>HTML</p>
-                    <p>CSS</p>
-                    <p>C#</p>
-                    <p>Java</p>
-                    <p>Python</p>
-                    <p>PHP</p>
-                    <p>XQuery</p>
-                    <p>XML</p>
-                    <p>XSL</p>
+                    <p ng-repeat="skill in resume.skills | filter:{ type: SKILL_TYPE.language } ">{{ skill.name }}</p>
 
-                    <h3 class="heading green">Frameworks</h3>
-                    <p>jQuery</p>
-                    <p>AngularJS</p>
-                    <p>.NET Framework 1.1+</p>
-                    <p>ASP.NET MVC</p>
-                    <p>ADO.NET</p>
-                    <p>LINQ</p>
-                    <p>Node.js</p>
-                    <p>Express</p>
-                    <p>XSL:FO</p>
+                    <h3 class="heading blue">Frameworks/Libraries</h3>
+                    <p ng-repeat="skill in resume.skills | filter:{ type: SKILL_TYPE.frameworkSlashLibrary } ">{{ skill.name }}</p>
 
-                    <h3 class="heading green">Data Repositories</h3>
-                    <p>MS SQL Server</p>
-                    <p>MongoDB</p>
-                    <p>MarkLogic</p>
-                    <p>MySQL</p>
-            </div>
+                    <h3 class="heading yellow">Data Repositories</h3>
+                    <p ng-repeat="skill in resume.skills | filter:{ type: SKILL_TYPE.dataRepository } ">{{ skill.name }}</p>
+                </div>
             </div>
         </div>
 
@@ -149,5 +60,8 @@
                 <p>Follow me: <a href="https://github.com/superpezgeek" target="_blank"><i class="icon-github-alt"></i></a> <a href="http://www.linkedin.com/pub/dominic-riccardi/1a/793/853" target="_blank"><i class="icon-linkedin-sign"></i></a> <a href="https://twitter.com/superpezgeek" target="_blank"><i class="icon-twitter-sign"></i></a></p>
             </div>
         </div>
+
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>

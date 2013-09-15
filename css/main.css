@@ -8,16 +8,8 @@ div.sub-heading{
     font-size: 20px;
 }
 
-p.skills{
+div.job{
     margin-bottom: 35px;
-}
-
-.green{
-    color: #5cb85c;
-}
-
-div.jumbotron div{
-    line-height: 30px;
 }
 
 div.jumbotron div.thumbnail{
@@ -37,6 +29,22 @@ div.footer{
     padding-bottom: 10px;
 }
 
+.green{
+    color: #5cb85c;
+}
+
+.blue{
+    color: #428bca;
+}
+
+.yellow{
+    color: #f0ad4e;
+}
+
+.label{
+    margin-right: 2px;
+}
+
 .label-language{
     background-color: #5cb85c;
 }
@@ -47,4 +55,30 @@ div.footer{
 
 .label-data-repo{
     background-color: #f0ad4e;
+}
+
+@media (max-width: 1199px){
+    .green, .blue, .yellow{
+        color: #000;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    div.jumbotron h1{
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 428px) {
+    div.jumbotron{
+        text-align: center;
+    }
+
+    div.jumbotron div.thumbnail{
+        margin: auto;
+    }
+
+    div.jumbotron div.thumbnail.pull-left{
+        float: none !important;
+    }
 }
