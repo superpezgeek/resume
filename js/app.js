@@ -135,7 +135,12 @@ angular.module('resumeApp', [])
                 { name: "MongoDB", type: SKILL_TYPE.dataRepository },
                 { name: "MarkLogic", type: SKILL_TYPE.dataRepository },
                 { name: "MySQL", type: SKILL_TYPE.dataRepository }
-            ]
+            ],
+            social: {
+                github: "https://github.com/superpezgeek",
+                linkedIn: "http://www.linkedin.com/pub/dominic-riccardi/1a/793/853",
+                twitter: "https://twitter.com/superpezgeek"
+            }
         };
 
         $scope.sendEmail = function(){
