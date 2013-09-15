@@ -43,6 +43,7 @@ div.footer{
 
 .label{
     margin-right: 2px;
+    display: inline-block;
 }
 
 .label-language{
